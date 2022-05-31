@@ -5,23 +5,54 @@
 <meta name="viewport" content="width=device-width">
 <title>빈센트 반 고흐</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function(){//시작
-	//상단오른쪽 햄버거아이콘 클릭시,
-	let i = 0;
-	$("header button").click(function(){
-		i++;
-		if( i==1 ){
-			$("nav").slideDown();
-			$(this).text("close");
-		}else{
-			$("nav").slideUp();
-			$(this).text("menu");
-			i = 0;
-		}		
-	});
-});//끝
-</script>
+	<script>
+	$(document).ready(function(){//시작부분
+			//상단오른쪽 햄버거아이콘 클릭,
+			$("header button").click(function(){
+				//<nav>이 내려왔다면~~>> {display:block;}
+				if(  $("nav").css("display") == "block"  ){
+						$("nav").stop().slideUp(); //결과  {display:none;}
+						$(this).text("menu"); //결과는 햄버거아이콘이 된다.
+				}
+				else {
+						$("nav").stop().slideDown(); //결과  {display:block;}
+						$(this).text("close"); //결과는 닫기아이콘이 된다.
+				}
+			});//햄버거아이콘클릭 (종료)
+
+
+			
+			/*$("h2").mouseover(function(){
+						$(this).stop().animate({paddingLeft : "100px"});	
+				$("h2").mouseover(function(){
+						$(this).stop().animate({paddingLeft : 0});	
+			});*/
+			
+			$("h2").hover(
+				function(){
+						$(this).stop().animate({paddingLeft : "100px"});	
+				},
+				function(){
+						$(this).stop().animate({paddingLeft : 0});
+				
+				}
+				
+			);
+			
+			$("nav a").eq(0).text("고흐 소개");
+			$("nav a").eq(1).text("고흐의 일생");
+	
+			const a2 =$("nav a").eq(2).text();
+			console.log(a2);
+			
+			const a21 =a2.replace("그","고흐");
+			$("nav a").eq(2).text(a21);
+			
+			$("nav a:contains('고흐')").css();
+			
+		
+		});//끝
+	</script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
 * {padding:0; margin:0;}
@@ -40,7 +71,9 @@ nav ul {line-height:450%;  padding-left:40%;  color:white; list-style-image:url(
 nav a {color:white; text-decoration:none; font-size:1.25rem; margin-left:8px; display:block;}
 
 /*콘텐츠*/
-section h2 {display:none;}
+section h2{/* display:none;*/ color:white;}
+
+
 </style>
 </head>
 <body>	
